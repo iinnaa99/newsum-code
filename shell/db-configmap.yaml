@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: newsum-db-config
+  namespace: site
+data:
+  DB_HOST: mysql-service
+  DB_NAME: news_db
+  DB_USER: nsuser
+  DB_PASSWORD: newsum

@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: newsum-deployment
+  namespace: site
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: newsum-app
+  template:
+    metadata:
+      labels:
+        app: newsum-app
+    spec:
+      containers:
+        - name: newsum-container
+          image: bbin99/newsum
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 443
+          envFrom:
+            - configMapRef:
+                name: newsum-config
+          volumeMounts:
+            - name: cert-volume
+              mountPath: /app/certs
+              readOnly: true
+          resources:
+            requests:
+              cpu: "200m"
+              memory: "256Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+      volumes:
+        - name: cert-volume
+          hostPath:
+            path: /newsum/certs
+            type: Directory

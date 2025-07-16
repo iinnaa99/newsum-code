@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-config
+  namespace: site
+data:
+  my.cnf: |
+    [mysqld]
+    max_allowed_packet = 128M # 원하는 값으로 설정 (예: 128MB)
+      # mysql에서 받을수 있는 데이터를 늘리는 conf 파일입니다.
