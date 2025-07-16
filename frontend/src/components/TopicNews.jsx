@@ -26,7 +26,6 @@ export default function CategoryCards() {
         const response = await fetch("/api/news/topic");
         const data = await response.json();
 
-        // ✅ 여기부터 그룹핑 로직 삽입
         const grouped = {};
         for (const news of data) {
           const topicId = news.topic_id;
@@ -50,16 +49,15 @@ export default function CategoryCards() {
             category_name: news.category_name,
           });
         }
-        const groupedNews = Object.values(grouped);
-        setAllNews(groupedNews); // ✅ topic 단위로 묶인 데이터로 교체
+        setAllNews(Object.values(grouped));
       } catch (error) {
         console.error("🔥 뉴스 불러오기 실패:", error);
       }
     };
+
     fetchNews();
   }, []);
 
-  // ✅ 화면 크기에 따라 cardsPerPage 조절
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth <= 768) {
@@ -68,7 +66,7 @@ export default function CategoryCards() {
         setCardsPerPage(3);
       }
     };
-    handleResize(); // 초기 호출
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -78,13 +76,13 @@ export default function CategoryCards() {
       ? allNews
       : allNews.filter((card) => card.category_name === selectedCategory);
 
-  const pagedCards = filteredCards.slice(
-    categoryPage,
-    categoryPage + cardsPerPage
-  );
+  const totalPages = Math.ceil(filteredCards.length / cardsPerPage);
+  const startIndex = categoryPage * cardsPerPage;
+  const endIndex = startIndex + cardsPerPage;
+  const pagedCards = filteredCards.slice(startIndex, endIndex);
 
   const handleCategoryNext = () => {
-    if (categoryPage < filteredCards.length - cardsPerPage) {
+    if (categoryPage < totalPages - 1) {
       setCategoryPage((prev) => prev + 1);
     }
   };
@@ -123,6 +121,7 @@ export default function CategoryCards() {
   return (
     <div>
       <h2>주제별</h2>
+
       <div
         style={{
           marginBottom: "1.4rem",
@@ -166,7 +165,7 @@ export default function CategoryCards() {
         }}
       >
         {pagedCards.map((card, index) => {
-          const sameTopicNews = card.newsList.slice(0, 3); // ✅ 바뀐 구조 반영
+          const sameTopicNews = card.newsList.slice(0, 3);
 
           return (
             <NewsCard
@@ -198,15 +197,12 @@ export default function CategoryCards() {
         </button>
         <span style={{ margin: "0 10px" }}>
           {filteredCards.length > 0
-            ? `${Math.min(
-                categoryPage + 1,
-                filteredCards.length - cardsPerPage + 1
-              )} / ${Math.max(filteredCards.length - cardsPerPage + 1, 1)}`
+            ? `${categoryPage + 1} / ${totalPages}`
             : "0 / 0"}
         </span>
         <button
           onClick={handleCategoryNext}
-          disabled={categoryPage >= filteredCards.length - cardsPerPage}
+          disabled={categoryPage >= totalPages - 1}
         >
           ➡️
         </button>
