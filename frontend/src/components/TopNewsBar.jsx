@@ -24,7 +24,10 @@ export default function TopNewsBar({ onTitleClick }) {
 
     const fetchTopNews = async () => {
       try {
-        const response = await fetch("/api/news/top10");
+        const response = await fetch(
+          `${window.config.VITE_API_BACKEND}/api/news/top10`
+        );
+
         const data = await response.json();
         setTopNews(data);
       } catch (error) {
@@ -42,7 +45,9 @@ export default function TopNewsBar({ onTitleClick }) {
 
     try {
       // 🔁 topic_id로 관련 뉴스 요청
-      const res = await fetch(`/api/news/related?topic_id=${news.topic_id}`);
+      const res = await fetch(
+        `${window.config.VITE_API_BACKEND}/api/news/related?topic_id=${news.topic_id}`
+      );
       const related = await res.json();
 
       const relatedNews = related

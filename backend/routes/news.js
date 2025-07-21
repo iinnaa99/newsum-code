@@ -1,6 +1,6 @@
 // backend/routes/news.js
 import express from "express";
-import db from "../db.js";
+import db from "../database/news_db.js";
 
 const router = express.Router();
 

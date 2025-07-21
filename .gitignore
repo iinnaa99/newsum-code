@@ -1,20 +1,8 @@
-<<<<<<< HEAD
 node_modules/
 dist/
 .env
 .DS_Store
 backend/.env
 frontend/.env
+subscription/.env
 .dockerignore 
-shellScript/final files/secret.yaml
-shellScript/newsum/secret.yaml
-shellScript/newsum/tls.crt
-shellScript/newsum/certs
-=======
-bk
-certs
-.git
-metrics.json
-script.js  
-script.js.bk
->>>>>>> 082a46e3c2467184bcf615c5d5aa731c8dc764a2

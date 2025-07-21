@@ -1,0 +1,32 @@
+{
+  "sqltools.connections": [
+    {
+      "mysqlOptions": {
+        "authProtocol": "default",
+        "enableSsl": "Disabled"
+      },
+      "previewLimit": 50,
+      "server": "192.168.56.1",
+      "port": 3306,
+      "driver": "MySQL",
+      "name": "mysql",
+      "username": "root",
+      "database": "news_db",
+      "askForPassword": true
+    },
+    {
+      "mysqlOptions": {
+        "authProtocol": "default",
+        "enableSsl": "Disabled"
+      },
+      "previewLimit": 50,
+      "server": "13.209.74.77",
+      "port": 3306,
+      "driver": "MySQL",
+      "name": "legacy",
+      "username": "vscode",
+      "database": "news_db",
+      "askForPassword": true
+    }
+  ]
+}

@@ -23,7 +23,10 @@ export default function CategoryCards() {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const response = await fetch("/api/news/topic");
+        const response = await fetch(
+          `${window.config.VITE_API_BACKEND}/api/news/topic`
+        );
+
         const data = await response.json();
 
         const grouped = {};
