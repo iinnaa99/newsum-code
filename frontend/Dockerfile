@@ -18,13 +18,14 @@ RUN npm run build
 # =============================
 FROM nginx:alpine
 
-# Nginx 기본 설정 덮어쓰기 (선택)
-# COPY nginx.conf /etc/nginx/nginx.conf
+# ✅ Nginx 기본 설정 덮어쓰기
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# 빌드된 정적 파일 복사
+# ✅ 빌드된 정적 파일 복사
 COPY --from=build /app/dist /usr/share/nginx/html
 
 # Nginx는 기본적으로 80 포트를 사용
 EXPOSE 80
 
 CMD ["nginx", "-g", "daemon off;"]
+

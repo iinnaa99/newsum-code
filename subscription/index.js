@@ -14,6 +14,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.get("/health", (req, res) => {
+  res.status(200).send("Subscribe healthy");
+});
+
 app.use("/api/subscribe", subscribeRouter);
 app.use("/api/send-verification", sendVerificationRouter);
 app.use("/api/verify-email", verifyRouter);
