@@ -70,13 +70,20 @@ export default function PressNews({ onTitleClick }) {
 
   return (
     <div>
-      <h2>언론사별</h2>
+      <h2
+        style={{
+          marginBottom: "15px",
+        }}
+      >
+        언론사별
+      </h2>
       <div
         style={{
           display: "flex",
           flexWrap: "wrap",
           gap: "10px",
           justifyContent: "center",
+          marginBottom: "1.4rem",
         }}
       >
         {pagedPressNames.map((pressName) => (

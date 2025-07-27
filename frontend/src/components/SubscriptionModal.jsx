@@ -228,7 +228,7 @@ export default function SubscriptionModal({ onClose }) {
       <div className="modal-container">
         <h2 className="modal-title">뉴스 구독 신청</h2>
         <p>
-          AI로 요약된 최신 뉴스를 <strong>오전 9시</strong>에 받아보세요!
+          AI로 요약된 최신 뉴스를 <strong>오전 8시</strong>에 받아보세요!
         </p>
         <form onSubmit={handleSubmit}>
           <div className="form-group">

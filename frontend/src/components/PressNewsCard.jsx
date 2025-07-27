@@ -27,24 +27,74 @@ export default function PressNewsCard({
         justifyContent: "space-between",
       }}
     >
-      {/* 언론사 + 건수 */}
       <div
         style={{
           display: "flex",
           justifyContent: "space-between",
-          alignItems: "center",
-          padding: "1rem",
+          alignItems: "flex-end", // 👉 건수를 아래 정렬
+          margin: "1rem",
         }}
       >
-        <div style={{ fontWeight: "bold", fontSize: "1rem", color: "#000" }}>
+        <h4
+          style={{
+            margin: 0,
+            fontSize: "1.2rem",
+            fontWeight: "bold",
+            lineHeight: "1.4",
+            overflow: "hidden",
+            whiteSpace: "nowrap",
+            textOverflow: "ellipsis",
+          }}
+        >
           {press}
-        </div>
+        </h4>
+
         <div
-          style={{ fontSize: "0.85rem", color: "#007bff", fontWeight: "bold" }}
+          style={{
+            fontSize: "0.85rem",
+            color: "#007bff",
+            fontWeight: "bold",
+            marginLeft: "1rem",
+          }}
         >
           {count}건
         </div>
       </div>
+
+      {/* 첫 번째 뉴스 제목 */}
+      {titles?.[0] && (
+        <div
+          style={{
+            margin: "1.5rem 1rem",
+            fontSize: "1rem",
+            fontWeight: "bold",
+            lineHeight: "1.4",
+            cursor: "pointer",
+            overflow: "hidden",
+            whiteSpace: "nowrap",
+            textOverflow: "ellipsis",
+          }}
+        >
+          <a
+            href={titles[0].link}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              color: "#000",
+              textDecoration: "none",
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              display: "block",
+              fontSize: "1rem",
+              fontWeight: "bold",
+            }}
+            title={titles[0].title}
+          >
+            {decodeHtmlEntities(titles[0].title)}
+          </a>
+        </div>
+      )}
 
       {/* 이미지 */}
       <div style={{ height: "160px", overflow: "hidden" }}>
@@ -68,13 +118,14 @@ export default function PressNewsCard({
       {/* 뉴스 리스트 */}
       <div style={{ padding: "0.2rem" }}>
         <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-          {titles?.slice(0, 3).map((item, index) => (
+          {titles?.slice(1, 4).map((item, index) => (
             <li key={index} style={{ margin: "1rem" }}>
               <a
                 href={item.link}
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
+                  fontSize: "0.85rem",
                   display: "block",
                   flex: 1,
                   whiteSpace: "nowrap",
@@ -89,7 +140,7 @@ export default function PressNewsCard({
               </a>
               <div
                 style={{
-                  fontSize: "0.85rem",
+                  fontSize: "10pt",
                   color: "#000",
                   whiteSpace: "nowrap",
                   fontWeight: "bold",

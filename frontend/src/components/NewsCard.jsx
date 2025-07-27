@@ -37,7 +37,8 @@ export default function NewsCard({
           display: "inline-block",
           padding: "0.3rem 0.6rem",
           borderRadius: "999px",
-          margin: "1rem",
+          marginLeft: "1rem",
+          marginTop: "1rem",
           width: "18%",
           textAlign: "center",
         }}
@@ -142,7 +143,7 @@ export default function NewsCard({
                     marginBottom: "1rem",
                   }}
                 >
-                  {news.press_name}
+                  {news.press_name?.trim() || "뉴스1"}
                 </div>
               </div>
             </li>

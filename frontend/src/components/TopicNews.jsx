@@ -123,17 +123,15 @@ export default function CategoryCards() {
 
   return (
     <div>
-      <h2>주제별</h2>
-
       <div
         style={{
-          marginBottom: "1.4rem",
           display: "flex",
           flexWrap: "wrap",
           gap: "0.5rem",
-          padding: "0 1rem",
+          alignItems: "center", // 수직 정렬도 같이 하면 좋음
         }}
       >
+        <h2 style={{ marginRight: "10px" }}>주제별</h2>
         {categories.map((cat) => (
           <button
             key={cat}
@@ -152,6 +150,7 @@ export default function CategoryCards() {
               maxWidth: "100%",
               whiteSpace: "normal",
               wordBreak: "keep-all",
+              height: "50%",
             }}
           >
             {cat}

@@ -27,7 +27,7 @@ app.listen(port, () => {
   console.log(`✅ subscription-api listening on port ${port}`);
 });
 
-cron.schedule("* 8 * * *", () => {
+cron.schedule("0 8 * * *", () => {
   console.log("🕘 아침 8시 메일 전송 시작");
   sendDailyEmails();
 });
