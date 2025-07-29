@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import path from "path";
+import http from "http"; // ✅ 추가
 import { fileURLToPath } from "url";
 
 import newsRouter from "./routes/news.js";
@@ -20,8 +21,15 @@ app.get("/health", (req, res) => {
 app.use("/api/news", newsRouter);
 app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
-// ✅ HTTP 서버 실행 (포트 3000)
+// ✅ HTTP 서버 생성 및 설정
 const port = 3000;
-app.listen(port, () => {
-  console.log(`✅ HTTP Server running on http://localhost:${port}`);
+const server = http.createServer(app);
+
+// ✅ 커넥션 관련 설정
+server.keepAliveTimeout = 60000; // 커넥션 유지 시간
+server.headersTimeout = 65000; // 헤더 대기 시간
+server.maxConnections = 10000; // 최대 커넥션 수
+
+server.listen(port, "0.0.0.0", () => {
+  console.log(`✅ HTTP Server running on http://0.0.0.0:${port}`);
 });
